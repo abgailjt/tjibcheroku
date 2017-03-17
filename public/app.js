@@ -39,12 +39,13 @@ $('.bucket-btn--list').on('click', function(event) {
     if (!buckets.length) {
       $('.buckets-list').html('No buckets');
     } else {
+      var bucketList = document.createElement('ul');
       buckets.forEach(function(bucket) {
         $('.buckets-list')
           .html('Buckets: ')
           .css('color', 'black')
         console.log(bucket);
-        var bucketList = document.createElement('ul');
+        //var bucketList = document.createElement('ul');
         $('.buckets-list').append($(bucketList));
         var bucketItem = document.createElement('li');
         $(bucketItem).html(`Name: ${bucket.name}, id: ${bucket.id}`);
