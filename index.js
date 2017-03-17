@@ -54,6 +54,23 @@ app.get('/user/authenticate/user-pass', function(req, res) {
   res.status(200).send('successful');
 });
 
+/**
+ * Lists all buckets on your account
+ */
+app.get('/buckets/list', function(req, res) {
+  separator();
+  console.log('Getting buckets...')
+  client.getBuckets(function(err, buckets) {
+    if (err) {
+      return console.log('error', err.message);
+    }
+    console.log('Retrieved buckets', buckets);
+    res.status(200).send(buckets);
+  });
+});
+
+
+/** Upload file **/
 app.get('/files/upload', function(req, res) {
   separator();
   console.log('Retrieving buckets...')

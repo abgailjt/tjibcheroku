@@ -22,6 +22,40 @@ $('.auth-btn').on('click', function(event) {
   });
 });
 
+// List buckets
+$('.bucket-btn--list').on('click', function(event) {
+  event.preventDefault();
+  $('.bucket-list').html('');
+  console.log('List Buckets button clicked');
+
+  $('.buckets-list')
+    .html('Retrieving buckets . . .')
+    .css('color', 'orange');
+
+  $.ajax({
+    method: 'GET',
+    url: '/buckets/list'
+  }).done(function(buckets) {
+    if (!buckets.length) {
+      $('.buckets-list').html('No buckets');
+    } else {
+      buckets.forEach(function(bucket) {
+        $('.buckets-list')
+          .html('Buckets: ')
+          .css('color', 'black')
+        console.log(bucket);
+        var bucketList = document.createElement('ul');
+        $('.buckets-list').append($(bucketList));
+        var bucketItem = document.createElement('li');
+        $(bucketItem).html(`Name: ${bucket.name}, id: ${bucket.id}`);
+        $(bucketList).append(bucketItem);
+      });
+    }
+  }).error(function(err) {
+    handleError('Bucket list', '.buckets-list', 'html', err);
+  });
+});
+
 // Upload file
 $('.files-btn--upload').on('click', function(event) {
   event.preventDefault();
