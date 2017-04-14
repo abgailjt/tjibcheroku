@@ -102,7 +102,7 @@ function handleError(subject, className, element, err) {
 }
 
 //TJI Test Upload file
-$('.upload-btn').on('click', function (){
+$('.files-btn--upload').on('click', function (){
     $('#upload-input').click();
     $('.progress-bar').text('0%');
     $('.progress-bar').width('0%');
